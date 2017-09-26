@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>    
+    <title>Sesiones</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="vistas/css/estilos.css">        
+    <link rel="stylesheet" href="vistas/css/bootstrap.min.css">
+    <link rel="stylesheet" href="vistas/css/font-awesome.min.css">    
+    <link rel="stylesheet" href="vistas/css/custom.css">
+    <script type="text/javascript" language="javascript" src="vistas/js/ajaxUsuario4.js"></script>
+</head>
+
+<body>
+    <header class="my-header">
+        <a href="#" class="my-logo">
+            <span><b>Sesiones</b>Web</span>
+         </a>
+         <nav class="container navbar navbar-static-top">
+             <div class="navbar-header">
+                 <a class="navbar-toggle collapsed" data-toggle="collapse" data-target="#my-menu">
+                 </a> 
+                 <div class="my-navbar-left">
+                     <div class="collapse navbar-collapse" id="my-menu">
+                         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                             <li class="nav-item">
+                                 <a class="nav-link active" id="crear-usuario" data-toggle="pill" href="#f-crear-usuario" role="tab" aria-controls="f-crear-usuario" aria-expanded="true">Registrarse
+                                 </a>
+                             </li>
+                             <li class="nav-item">
+                                 <a class="nav-link active" id="login" data-toggle="pill" href="#f-login" role="tab" aria-controls="f-login" aria-expanded="true">Iniciar Sesión
+                                 </a>
+                             </li>
+                             <li class="nav-item">
+                                 <a id="sesion_user" name="sesion_user"></a>
+                             </li>
+                         </ul>
+                     </div>
+                 </div>                 
+             </div>
+        </nav>
+        <a></a>
+    </header>
+<!---------------------------------------------------REGISTRARSE------------------------------------------------------->
+    <div class="container">
+        <div class="row">
+            <div class="tab-content" id="pills-tabContent">
+                <div id="f-crear-usuario" class="col-md-6 tab-pane fade" role="tabpanel" aria-labelledby="crear-usuario">
+                    <div id="form-container"> 
+                        <form class="form-horizontal" action="logup.php" method="post">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Nombre:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="logup-name" name="logup-nombre" placeholder="Digite su nombre" required/>
+                                </div>
+                            </div>
+                            <div class="form-group">                
+                                <label class="control-label col-sm-2">Apellido:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="logup-apellido" name="logup-apellido" placeholder="Digite su apellido" required/>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">E-mail:</label>
+                                <div class="col-sm-10">
+                                    <input type="email" class="form-control" id="logup-email" name="logup-email" placeholder="Digite su e-mail" required/>
+                                </div>
+                            </div>                    
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Género:</label>
+                                <div class="col-sm-10">
+                                    <label class="control-label" for="male">
+                                           <input type="radio" name="logup-genero" id="male" value="Masculino" required/> Masculino
+                                    </label>
+                                    <label  class="control-label" for="female">
+                                        <input type="radio" name="logup-genero" id="female" value="Femenino" required/> Femenino
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Contraseña:</label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" id="logup-password" name="logup-password" placeholder="Digite su contraseña" required/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Contraseña:</label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" id="logup-password2" name="logup-password2" placeholder="Confirme su contraseña" required/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Rol:</label>
+                                    <div class="col-sm-10">
+                                        <select id="rol" name="rol" class="form-control form-control-lg">
+                                            <option>Lectura</option>
+                                            <option>Lectura y Creacion de usuarios</option>
+                                            <option>Lectura, Creacion de usuarios y Edicion de usuarios</option>
+                                            <option>Lectura, Creacion de usuarios, Edicion de usuarios y Eliminar</option>
+                                        </select>
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-default">Registrar</button>
+                            </div>
+                        </form>                     
+                    </div>
+                </div>
+<!---------------------------------------------------LOGIN------------------------------------------------------------->           
+                <div id="f-login" class="col-md-6 tab-pane fade" role="tabpanel" aria-labelledby="login">
+                    <div id="form-container"> 
+                        <form class="form-horizontal" action="login.php" method="post">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">E-mail:</label>
+                                <div class="col-sm-10">
+                                    <input type="email" class="form-control" id="login-email" name="login-email" placeholder="Digite su e-mail" required/>
+                                </div>
+                            </div> 
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Contraseña:</label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" id="login-password" name="login-password" placeholder="Digite su contraseña" required/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-default">Iniciar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <script src="vistas/js/jquery-3.1.1.min.js"></script>
+    <script src="vistas/js/bootstrap.min.js"></script>
+</body>
+</html>

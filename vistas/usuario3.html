@@ -1,0 +1,270 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>    
+    <title>Sesión 4 Iniciada</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/estilos.css">        
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">    
+    <link rel="stylesheet" href="css/custom.css">
+    <script type="text/javascript" language="javascript" src="js/ajaxUsuario4.js"></script>
+    <script type="text/javascript" language="javascript" src="js/sesion.js"></script>
+    
+   
+</head>
+
+<body>
+    <header class="my-header">
+        <a href="#" class="my-logo">
+            <span><b>Sesiones</b>Web</span>
+         </a>
+         <nav class="container navbar navbar-static-top">
+             <div class="navbar-header">
+                 <a class="navbar-toggle collapsed" data-toggle="collapse" data-target="#my-menu">
+                 </a> 
+                 <div class="my-navbar-left">
+                     <div class="collapse navbar-collapse" id="my-menu">
+                         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                             <li class="nav-item">
+                                 <a class="nav-link active" id="ver-usuario" data-toggle="pill" href="#f-ver-usuario" role="tab" aria-controls="f-ver-usuario" aria-expanded="true">Ver Usuario
+                                 </a>
+                             </li>
+                             <li>
+                                 <a class="nav-link active" id="crear-usuario" data-toggle="pill" href="#f-crear-usuario" role="tab" aria-controls="f-crear-usuario" aria-expanded="true">Crear Usuario
+                                 </a>
+                             </li>
+                             <li>
+                                <a class="nav-link active" id="modificar-usuario" data-toggle="pill" href="#f-modificar-usuario" role="tab" aria-controls="f-modificar-usuario" aria-expanded="true">Modificar Usuario
+                                </a>
+                             </li>
+                             <li class="nav-item">
+                                 <a href="/remotas_1.1/php/logout.php">Cerrar Sesión
+                                 </a>
+                             </li>                             
+                             <li class="nav-item">
+                                 <a id="sesion"></a>
+                             </li>
+                         </ul>
+                     </div>
+                 </div>
+             </div>
+        </nav>
+    </header>
+<!-----------------------------------VER INFORMACIÓN DE UN USUARIO-------------------------------------------------------->
+    <div class="container">
+        <div class="row">
+            <div class="tab-content" id="pills-tabContent">
+                <div id="f-ver-usuario" name="f-ver-usuario" class="col-md-6 tab-pane fade" role="tabpanel" aria-labelledby="ver-usuario">
+                    <div id="form-container"> 
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Nombre:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="ver-nombre" readonly/>
+                                </div>
+                            </div>
+                            <div class="form-group">                
+                                <label class="control-label col-sm-2">Apellido:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="ver-apellido" readonly/>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">E-mail:</label>
+                                <div class="col-sm-10">
+                                    <input type="email" class="form-control" id="ver-email" readonly/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Género:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="ver-genero" readonly/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Rol:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="ver-rol" readonly/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">ID:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="ver-id" readonly/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>                
+                </div>
+<!-----------------------------------CREAR USUARIO------------------------------------------------------------------------> 
+                <div id="f-crear-usuario" class="col-md-6 tab-pane fade" role="tabpanel" aria-labelledby="crear-usuario">
+                    <div id="form-container"> 
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Nombre:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="crear_nombre" name="crear_nombre" placeholder="Digite su nombre" required/>
+                                </div>
+                            </div>
+                            <div class="form-group">                
+                                <label class="control-label col-sm-2">Apellido:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="crear_apellido" name="crear_apellido" placeholder="Digite su apellido" required/>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">E-mail:</label>
+                                <div class="col-sm-10">
+                                    <input type="email" class="form-control" id="crear_email" name="crear-email" placeholder="Digite su e-mail" required/>
+                                </div>
+                            </div>                    
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Género:</label>
+                                <div class="col-sm-10">
+                                    <label class="control-label" for="male">
+                                           <input type="radio" name="crear_genero" id="male" value="Masculino" required/> Masculino
+                                    </label>
+                                    <label  class="control-label" for="female">
+                                        <input type="radio" name="crear_genero" id="female" value="Femenino" required/> Femenino
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Contraseña:</label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" id="crear_password" name="crear_password" placeholder="Digite su contraseña" required/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Contraseña:</label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" id="crear_password2" name="crear_password2" placeholder="Confirme su contraseña" required/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Rol:</label>
+                                    <div class="col-sm-10">
+                                        <select id="crear_rol" name="crear_rol" class="form-control form-control-lg">
+                                            <option>Lectura</option>
+                                            <option>Lectura y Creacion de usuarios</option>
+                                            <option>Lectura Creacion de usuarios y Edicion de usuarios</option>
+                                            <option>Lectura Creacion de usuarios Edicion de usuarios y Eliminar</option>
+                                        </select>
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-default" onclick="crearUsuario(crear_nombre.value, crear_apellido.value, crear_email.value, crear_genero.value, crear_password.value, crear_password2.value, crear_rol.value)">Registrar</button>
+                            </div>
+                        </form>                     
+                    </div>
+                </div>
+<!-----------------------------------MODIFICAR USUARIO-------------------------------------------------------------------->                
+                <div id="f-modificar-usuario" class="col-md-6 tab-pane fade" role="tabpanel" aria-labelledby="modificar-usuario">
+                    <div id="form-container"> 
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Nombre:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="md_nombre" name="md_nombre" placeholder="Digite su nombre" required/>
+                                </div>
+                            </div>
+                            <div class="form-group">                
+                                <label class="control-label col-sm-2">Apellido:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="md_apellido" name="md_apellido" placeholder="Digite su apellido" required/>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">E-mail:</label>
+                                <div class="col-sm-10">
+                                    <input type="email" class="form-control" id="md_email" name="md_email" placeholder="Digite su e-mail" required/>
+                                </div>
+                            </div>                      
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Género:</label>
+                                <div class="col-sm-10">
+                                    <label class="control-label" for="male">
+                                        <input type="radio" name="md_genero" id="male" value="Masculino" required/> Masculino
+                                    </label>
+                                    <label  class="control-label" for="female">
+                                        <input type="radio" name="md_genero" id="female" value="Femenino" required/> Femenino
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Contraseña:</label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" id="md_password" name="md_password" placeholder="Digite su contraseña" required/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Contraseña:</label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" id="md_password2" name="md_password2" placeholder="Confirme su contraseña" required/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Rol:</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control form-control-lg" id="md_rol" name="md_rol">
+                                        <option>Lectura</option>
+                                        <option>Lectura y Creacion de usuarios</option>
+                                        <option>Lectura Creacion de usuarios y Edicion de usuarios</option>
+                                        <option>Lectura Creacion de usuarios Edicion de usuarios y Eliminar</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">ID:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="md_id" name="md_id" readonly/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-default" onclick="modificarUsuario(md_nombre.value, md_apellido.value, md_email.value, md_genero.value, md_password.value, md_password2.value, md_rol.value, md_id.value)">Modificar</button>
+                            </div>
+                        </form>  
+                    </div>
+                </div>
+<!------------------------------------------------------------------------------------------------------------------------>
+            </div>
+        </div>
+    </div> 
+<!------------------------------------CONTENEDOR DE TODOS LOS USUARIOS EN LA BASE DE DATOS--------------------------------> 
+    <div class="container">
+        <div class="row">
+            <div class=" col-sm-12">
+                <div class="form-group">                    
+                    <label class="control-label col-sm-1">Buscar por</label>
+                    <div class="col-sm-2">
+                        <select id="buscar_por" name="buscar_por" class="form-control form-control-lg">
+                            <option>Nombre</option>  
+                            <option>Apellido</option>
+                            <option>Email</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-4 form-label">
+                        <input type="text" class="form-control" id="buscar" name="buscar"/>
+                    </div>
+                    <div class="col-sm-1 form-label">
+                        <button onclick="verUsuario(buscar_por.value, buscar.value)" class="btn btn-default" class="nav-link active" id="ver-usuario" data-toggle="pill" href="#f-ver-usuario" role="tab" aria-controls="f-ver-usuario" aria-expanded="true">Ver</button>
+                    </div>
+                    <div class="col-sm-1 form-label">
+                        <button onclick="verModificarUsuario(buscar_por.value, buscar.value)" class="btn btn-default" class="nav-link active" id="modificar-usuario" data-toggle="pill" href="#f-modificar-usuario" role="tab" aria-controls="f-modificar-usuario" aria-expanded="true">Modificar</button>
+                    </div>
+                </div>
+            </div>
+            <div id="tabla_registros" class="col-sm-12 table-responsive">
+                
+            </div>            
+        </div>
+    </div>
+                       
+    
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    
+</body>
+</html>

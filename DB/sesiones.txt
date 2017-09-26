@@ -1,0 +1,92 @@
+CREATE DATABASE sesiones;
+
+CREATE TABLE `personas` (
+  `ID` int(3) NOT NULL,
+  `nombre` varchar(20) NOT NULL,
+  `apellido` varchar(20) NOT NULL,
+  `genero` varchar(10) NOT NULL,
+  `ID_usuarios` int(3) NOT NULL
+);
+
+CREATE TABLE `usuarios` (
+  `ID` int(3) NOT NULL,
+  `email` text COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `rol` text COLLATE utf8_unicode_ci NOT NULL
+);
+
+ALTER TABLE `personas`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `ID_usuarios` (`ID_usuarios`);	
+
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`ID`);
+
+
+CREATE TABLE inventario(id_inventario INT PRIMARY KEY, codigo_unico VARCHAR(45), id_bienes INT, ubicacion VARCHAR(45), fecha_ingreso VARCHAR(45), id_responsable INT);
+
+CREATE TABLE responsable(id_responsable INT PRIMARY KEY, dni VARCHAR(45), nombre VARCHAR(45), id_cargo INT);
+
+CREATE TABLE cargo(id_cargo INT PRIMARY KEY, descripcion VARCHAR(45), jefe_area BOOLEAN);
+
+CREATE TABLE bienes(id_bienes INT PRIMARY KEY, descripcion VARCHAR(45), tipo VARCHAR(45));
+
+CREATE TABLE cotizacion_bienes(cotizacion_id_cotizacion INT PRIMARY KEY, bienes_id_bienes INT, cantidad VARCHAR(45));
+
+-- ALTER TABLE cotizacion_bienes ADD PRIMARY KEY(bienes_id_bienes);
+
+CREATE TABLE solicitud_bienes(id_solicitud_bienes INT PRIMARY KEY, cantidad INT, id_solicitud INT, id_bienes INT);
+
+CREATE TABLE cotizacion(id_cotizacion INT PRIMARY KEY, fecha DATETIME, id_responsable INT, id_solicitud INT);
+
+CREATE TABLE solicitud(id_solicitud INT PRIMARY KEY, fecha DATETIME, id_responsable INT);
+
+CREATE TABLE orden_compra(id_orden_compra INT PRIMARY KEY, id_proveedor INT, id_bienes INT, aprovado BOOLEAN, id_cotizacion INT, id_responsable INT);
+
+CREATE TABLE proveedor(id_proveedor INT PRIMARY KEY, nro_orden VARCHAR(45), ruc INT, razon_social VARCHAR(255), fecha_orden DATETIME, monto_total DOUBLE, fecha_entrega DATE);
+
+CREATE TABLE ingreso(id_ingreso INT PRIMARY KEY, fecha_ingreso VARCHAR(45), id_orden_compra INT, cantidad VARCHAR(45), valor_total VARCHAR(45), id_bienes INT, id_proveedor INT);
+
+
+ALTER TABLE inventario ADD FOREIGN KEY(id_bienes) REFERENCES bienes(id_bienes);
+
+ALTER TABLE inventario ADD FOREIGN KEY(id_responsable) REFERENCES responsable(id_responsable);
+
+ALTER TABLE cotizacion_bienes ADD FOREIGN KEY(cotizacion_id_cotizacion) REFERENCES cotizacion(id_cotizacion);
+
+-- ALTER TABLE cotizacion_bienes ADD FOREIGN KEY(bienes_id_bienes) REFERENCES bienes(id_bienes);
+
+ALTER TABLE solicitud_bienes ADD FOREIGN KEY(id_solicitud) REFERENCES solicitud(id_solicitud);
+
+ALTER TABLE solicitud_bienes ADD FOREIGN KEY(id_bienes) REFERENCES bienes(id_bienes);
+
+ALTER TABLE cotizacion ADD FOREIGN KEY(id_responsable) REFERENCES responsable(id_responsable);
+
+ALTER TABLE cotizacion ADD FOREIGN KEY(id_solicitud) REFERENCES solicitud(id_solicitud);
+
+ALTER TABLE responsable ADD FOREIGN KEY(id_cargo) REFERENCES cargo(id_cargo);
+
+ALTER TABLE orden_compra ADD FOREIGN KEY(id_proveedor) REFERENCES proveedor(id_proveedor);
+
+ALTER TABLE orden_compra ADD FOREIGN KEY(id_bienes) REFERENCES bienes(id_bienes);
+
+ALTER TABLE orden_compra ADD FOREIGN KEY(id_responsable) REFERENCES responsable(id_responsable);
+
+ALTER TABLE orden_compra ADD FOREIGN KEY(id_cotizacion) REFERENCES cotizacion(id_cotizacion);
+
+ALTER TABLE ingreso ADD FOREIGN KEY(id_orden_compra) REFERENCES orden_compra(id_orden_compra);
+
+ALTER TABLE ingreso ADD FOREIGN KEY(id_orden_compra) REFERENCES orden_compra(id_orden_compra);
+
+ALTER TABLE ingreso ADD FOREIGN KEY(id_bienes) REFERENCES bienes(id_bienes);
+
+ALTER TABLE ingreso ADD FOREIGN KEY(id_proveedor) REFERENCES proveedor(id_proveedor);
+
+ALTER TABLE responsable ADD FOREIGN KEY(id_personas) REFERENCES personas(ID);
+
+ALTER TABLE responsable ADD id_persona INT(3);
+
+INSERT INTO `cargo` (`id_cargo`, `descripcion`, `jefe_area`) VALUES ('1', 'Lectura', NULL);
+INSERT INTO `cargo` (`id_cargo`, `descripcion`, `jefe_area`) VALUES ('2', 'Lectura Creacion de usuarios', NULL);
+INSERT INTO `cargo` (`id_cargo`, `descripcion`, `jefe_area`) VALUES ('3', 'Lectura Creacion de usuarios y Edicion de usuarios', NULL);
+INSERT INTO `cargo` (`id_cargo`, `descripcion`, `jefe_area`) VALUES ('4', 'Lectura Creacion de usuarios Edicion de usuarios y Eliminar', NULL);
